@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'posts/new'
-  get 'posts/create'
+  post 'posts/create', as: :posts
   devise_for :users
   root "site#index"
 end

@@ -10,16 +10,15 @@
     <%= turbo_frame_tag "post-likes" do %>
       <%= button_to "", post_likes_path(post), class: "post-actions-like" %>
     <% end %>
-    <div class="post-actions-comments">4 comments</div>
+    <div class="post-actions-comments"><%= pluralize(post.comments.count, "comment") %></div>
   </div>
   <div class="post-comments">
-    <div class="comment">
-      <span class="comment-author">joe</span>
-      This is something I said
-    </div>
-    <div class="comment">
-      <span class="comment-author">joe</span>
-      This is something I said
-    </div>
+    <%= render "comments/form" %>
+    <% post.comments.each do |comment| %>
+      <div class="comment">
+        <span class="comment-author"><%= comment.user.username %></span>
+        <%= comment.body %>
+      </div>
+    <% end %>
   </div>
 </div>
